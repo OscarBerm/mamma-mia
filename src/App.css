@@ -1,0 +1,47 @@
+@import "tailwindcss";
+.header {
+  background-image: url("./assets/Header.jpg");
+}
+nav:first-child {
+  place-self: start;
+}
+.links {
+  color: rgba(34, 34, 34, 1);
+}
+.links:hover {
+  color: rgba(34, 34, 34, 1);
+  background-color: rgba(255, 215, 168, 0.5);   
+}
+.shopping-car {
+  color: #fdfdfd;
+}
+.shopping-car:hover {
+  color: #fdfdfd;
+}
+article:hover > img {
+  transform: scale(1.1);
+  overflow: hidden;
+}
+.btn-order {
+  background-color: rgb(255 105 0);
+}
+.btn-order:hover {
+  background-color: rgb(245 74 0);
+}
+button {
+  border-radius: 50px;
+  border: none;
+}
+button:focus {
+  outline: none;
+}
+.btn-more:hover {
+  border: none;
+  background-color: rgb(41 37 36);
+}
+.links-mobile {
+  color:#222222;
+}
+.links-mobile:hover {
+  color: rgb(255 105 0); 
+}
