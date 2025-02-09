@@ -2,6 +2,12 @@
 .header {
   background-image: url("./assets/Header.jpg");
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #222222;
+  -webkit-box-shadow: 0 0 0px 40rem rgb(255 251 235) inset;
+}
 nav:first-child {
   place-self: start;
 }
@@ -12,21 +18,17 @@ nav:first-child {
   color: rgba(34, 34, 34, 1);
   background-color: rgba(255, 215, 168, 0.5);   
 }
-.shopping-car {
-  color: #fdfdfd;
-}
-.shopping-car:hover {
-  color: #fdfdfd;
-}
 article:hover > img {
   transform: scale(1.1);
   overflow: hidden;
 }
-.btn-order {
+.btn-primary {
   background-color: rgb(255 105 0);
+  color: #fdfdfd;
 }
-.btn-order:hover {
+.btn-primary:hover {
   background-color: rgb(245 74 0);
+  color: #fdfdfd;
 }
 button {
   border-radius: 50px;
@@ -35,7 +37,7 @@ button {
 button:focus {
   outline: none;
 }
-.btn-more:hover {
+.btn-secondary:hover {
   border: none;
   background-color: rgb(41 37 36);
 }
@@ -44,4 +46,15 @@ button:focus {
 }
 .links-mobile:hover {
   color: rgb(255 105 0); 
+}
+.btn-password {
+  background-color: transparent;
+}
+.invalid-feedback {
+  color: rgb(231 0 11);
+  font-size: 0.8rem;
+  margin-left: 3px;
+}
+.is-invalid {
+  border-color: rgb(231 0 11);
 }

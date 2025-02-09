@@ -16,10 +16,10 @@ const Card = ({ title, price, ingredients, imageUrl }) => {
             <div className="flex flex-col mt-auto items-center gap-4">
                 <span className="text-2xl text-gray-700">Precio: <span className="text-orange-600 font-bold">${price}</span></span>
                 <div className="flex gap-4">
-                    <button className="btn-more px-4 py-2 transition-colors ring ring-black hover:ring-gray-900">
+                    <button className="btn-secondary px-4 py-2 transition-colors ring ring-black hover:ring-gray-900">
                         Ver mas
                     </button>
-                    <button className="btn-order px-4 py-2 transition-colors">
+                    <button className="btn-primary px-4 py-2 transition-colors">
                         Ordenar
                     </button>
 
