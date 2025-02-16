@@ -58,3 +58,42 @@ button:focus {
 .is-invalid {
   border-color: rgb(231 0 11);
 }
+h3 {
+  text-transform: uppercase;
+}
+.ingredient-item:not(:last-child)::after {
+  content: ",";
+}
+.ingredient-item::before {
+  content: " ";
+  margin-right: 0.25rem;
+}
+.ingredient-item:last-child::after {
+  content: ".";
+}
+.btn-decrease {
+  width: 30px;
+  height: 30px;
+  color: rgb(251 44 54);
+  cursor: pointer;
+}
+.btn-decrease:hover {
+  fill: rgba(251, 44, 54, 0.1);
+}
+.btn-increase {
+  width: 30px;
+  height: 30px;
+  color: rgb(0 201 81);
+  cursor: pointer;
+}
+.btn-increase:hover {
+  fill: rgba(0, 201, 81, 0.1);
+}
+.btn-pay {
+  border-radius: 15px;
+  padding: 0.5rem 1.4rem;
+  font-size: 1.2rem;
+}
+.btn-pay:hover {
+  background-color: rgb(41 37 36);
+}

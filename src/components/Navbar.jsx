@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Pizza, Menu, X, ShoppingCart, House, LogIn, CircleUserRound, FilePenLine} from 'lucide-react';
 
+
 const Navbar = () => {
   const total = 25000;
   const token = false;

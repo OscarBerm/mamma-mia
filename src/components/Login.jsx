@@ -6,26 +6,26 @@ const Login = () => {
 
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
-    const [showPassword, setShowPassword] = useState(false);
-    const [ errores, setErrores] = useState([])
+    const [ showPassword, setShowPassword ] = useState(false);
+    const [ errors, setErrors] = useState([])
 
-    const validarForm = () =>{
-        const errores = [];
+    const validateForm = () =>{
+        const errors = [];
 
-        if(!email.trim()){ errores.push({ campo: "email", mensaje: "Debes proporcionar un email"})};
-        if(!password.trim()){ errores.push({ campo: "password", mensaje: "Debes proporcionar una contraseña"})};
-        if(password.trim().length < 6){ errores.push({ campo: "password", mensaje: "La contraseña debe tener un minimo de 6 caracteres"})};
+        if(!email.trim()){ errors.push({ field: "email", message: "Debes proporcionar un email"})};
+        if(!password.trim()){ errors.push({ field: "password", message: "Debes proporcionar una contraseña"})};
+        if(password.trim().length < 6){ errors.push({ field: "password", message: "La contraseña debe tener un minimo de 6 caracteres"})};
 
-        setErrores(errores);
-        return errores.length === 0;
+        setErrors(errors);
+        return errors.length === 0;
     }
 
         
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        const esValido = validarForm();
+        const isValid = validateForm();
 
-        if (esValido) {
+        if (isValid) {
             toast.success("Inicio de sesión completado con exito")
 
             setEmail("");
@@ -34,10 +34,10 @@ const Login = () => {
 
     }
 
-    const obtenerMensajeError = (campo)=> {
-        for (let i = 0; i < errores.length; i++) {
-            if(errores[i].campo === campo){
-            return errores[i].mensaje
+    const getErrorMessage = (field)=> {
+        for (let i = 0; i < errors.length; i++) {
+            if(errors[i].field === field){
+            return errors[i].message
         }
         }
         return null    
@@ -48,7 +48,7 @@ const Login = () => {
         if (id === "email") setEmail(value);
         if (id === "password") setPassword(value);
     
-        setErrores(errores.filter(error => error.campo !== id));
+        setErrors(errors.filter(error => error.field !== id));
     };
     
 
@@ -66,12 +66,12 @@ const Login = () => {
                     placeholder="name@example.com"
                     minLength={5}
                     maxLength={50}
-                    className={`border-1 border-gray-500 rounded-lg shadow-md p-2 ${obtenerMensajeError("email") ? "is-invalid": ""}`}
+                    className={`border-1 border-gray-500 rounded-lg shadow-md p-2 ${getErrorMessage("email") ? "is-invalid": ""}`}
                     value={email}
                     onChange={handleChange}
                 />
-                { obtenerMensajeError("email") && ( 
-                    <div className="invalid-feedback"> {obtenerMensajeError("email")} </div>
+                { getErrorMessage("email") && ( 
+                    <div className="invalid-feedback"> {getErrorMessage("email")} </div>
                 ) }
                 </div>
 
@@ -82,7 +82,7 @@ const Login = () => {
                         type={showPassword ? "text" : "password"}
                         id="password"
                         placeholder="Contraseña"
-                        className={`border-1 border-gray-500 rounded-lg shadow-md p-2 w-full pr-10 ${obtenerMensajeError("password") ? "is-invalid": ""}`}
+                        className={`border-1 border-gray-500 rounded-lg shadow-md p-2 w-full pr-10 ${getErrorMessage("password") ? "is-invalid": ""}`}
                         value={password}
                         onChange={handleChange}
                     />
@@ -98,8 +98,8 @@ const Login = () => {
                         )}
                     </button>
                 </div>
-                    { obtenerMensajeError("password") && ( 
-                        <div className="invalid-feedback"> {obtenerMensajeError("password")} </div>
+                    { getErrorMessage("password") && ( 
+                        <div className="invalid-feedback"> {getErrorMessage("password")} </div>
                     ) }
                 </div>
                 

@@ -10,28 +10,28 @@ const Register = () => {
     const [ confirmPassword, setConfirmPassword ] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [ errores, setErrores] = useState([]);
+    const [ errors, setErrors] = useState([]);
 
-    const validarForm = () =>{
-        const errores = [];
+    const validateForm = () =>{
+        const errors = [];
 
-        if(!email.trim()){ errores.push({ campo: "email", mensaje: "Debes proporcionar un email"})};
-        if(!password.trim()){ errores.push({ campo: "password", mensaje: "Debes proporcionar una contraseña"})};
-        if(!confirmPassword.trim()){ errores.push({ campo: "confirmPassword", mensaje: "Necesitas confirmar tu contraseña"})};
-        if(password.trim().length < 6){ errores.push({ campo: "password", mensaje: "La contraseña debe tener un minimo de 6 caracteres"})};
-        if( password.trim() !== confirmPassword.trim() ){ errores.push({ campo: "confirmPassword", mensaje: "Las contraseñas no coinciden"})};
+        if(!email.trim()){ errors.push({ field: "email", message: "Debes proporcionar un email"})};
+        if(!password.trim()){ errors.push({ field: "password", message: "Debes proporcionar una contraseña"})};
+        if(!confirmPassword.trim()){ errors.push({ field: "confirmPassword", message: "Necesitas confirmar tu contraseña"})};
+        if(password.trim().length < 6){ errors.push({ field: "password", message: "La contraseña debe tener un minimo de 6 caracteres"})};
+        if( password.trim() !== confirmPassword.trim() ){ errors.push({ field: "confirmPassword", message: "Las contraseñas no coinciden"})};
 
-        setErrores(errores);
-        return errores.length === 0;
+        setErrors(errors);
+        return errors.length === 0;
     }
 
         
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        const esValido = validarForm();
+        const isValid = validateForm();
 
-        if (esValido) {
-            toast.success("Registro completado con exito");
+        if (isValid) {
+            toast.success("Registro completado con exito")
 
             setEmail("");
             setPassword("");
@@ -39,10 +39,10 @@ const Register = () => {
         }
     }
 
-    const obtenerMensajeError = (campo)=> {
-        for (let i = 0; i < errores.length; i++) {
-            if(errores[i].campo === campo){
-            return errores[i].mensaje
+    const getErrorMessage = (field)=> {
+        for (let i = 0; i < errors.length; i++) {
+            if(errors[i].field === field){
+            return errors[i].message
         }
         }
         return null    
@@ -54,7 +54,7 @@ const Register = () => {
         if (id === "password") setPassword(value);
         if (id === "confirmPassword") setConfirmPassword(value);
     
-        setErrores(errores.filter(error => error.campo !== id));
+        setErrors(errors.filter(error => error.field !== id));
     }
     
     return (
@@ -63,6 +63,7 @@ const Register = () => {
             <Toaster position="top-center" expand={true} richColors />
 
             <form onSubmit={handleSubmit} action="" className="w-full md:w-[40vw] lg:max-w-lg flex flex-col gap-4">
+
                 <div className="flex flex-col gap-1">
                 <label htmlFor="email" className="text-gray-500 text-sm">Correo electrónico</label>
                 <input
@@ -71,12 +72,12 @@ const Register = () => {
                     placeholder="name@example.com"
                     minLength={5}
                     maxLength={50}
-                    className={`border-1 border-gray-500 rounded-lg shadow-md p-2 ${obtenerMensajeError("email") ? "is-invalid": ""}`}
+                    className={`border-1 border-gray-500 rounded-lg shadow-md p-2 ${getErrorMessage("email") ? "is-invalid": ""}`}
                     value={email}
                     onChange={handleChange}
                 />
-                { obtenerMensajeError("email") && ( 
-                    <div className="invalid-feedback"> {obtenerMensajeError("email")} </div>
+                { getErrorMessage("email") && ( 
+                    <div className="invalid-feedback"> {getErrorMessage("email")} </div>
                 ) }
                 </div>
 
@@ -87,7 +88,7 @@ const Register = () => {
                         type={showPassword ? "text" : "password"}
                         id="password"
                         placeholder="Contraseña"
-                        className={`border-1 border-gray-500 rounded-lg shadow-md p-2 w-full pr-10 ${obtenerMensajeError("password") ? "is-invalid": ""}`}
+                        className={`border-1 border-gray-500 rounded-lg shadow-md p-2 w-full pr-10 ${getErrorMessage("password") ? "is-invalid": ""}`}
                         value={password}
                         onChange={handleChange}
                     />
@@ -103,8 +104,8 @@ const Register = () => {
                         )}
                     </button>
                 </div>
-                    { obtenerMensajeError("password") && ( 
-                        <div className="invalid-feedback"> {obtenerMensajeError("password")} </div>
+                    { getErrorMessage("password") && ( 
+                        <div className="invalid-feedback"> {getErrorMessage("password")} </div>
                     ) }
                 </div>
                 
@@ -115,7 +116,7 @@ const Register = () => {
                         type={showConfirmPassword ? "text" : "password"}
                         id="confirmPassword"
                         placeholder="Confirmar contraseña"
-                        className={`border-1 border-gray-500 rounded-lg shadow-md p-2 w-full pr-10 ${obtenerMensajeError("confirmPassword") ? "is-invalid": ""}`}
+                        className={`border-1 border-gray-500 rounded-lg shadow-md p-2 w-full pr-10 ${getErrorMessage("confirmPassword") ? "is-invalid": ""}`}
                         value={confirmPassword}
                         onChange={handleChange}
                     />
@@ -131,8 +132,8 @@ const Register = () => {
                         )}
                     </button>
                 </div>
-                    { obtenerMensajeError("confirmPassword") && ( 
-                        <div className="invalid-feedback"> {obtenerMensajeError("confirmPassword")} </div>
+                    { getErrorMessage("confirmPassword") && ( 
+                        <div className="invalid-feedback"> {getErrorMessage("confirmPassword")} </div>
                     ) }
                 </div>
 
