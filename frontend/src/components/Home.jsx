@@ -1,8 +1,27 @@
 import Header from './Home/Header.jsx'
 import Card from './Home/Card.jsx'
 import { pizzas } from '../data/pizzas.js'
+import { useEffect, useState } from 'react'
 
 function Home() {
+
+  const [data, setData] = useState([])
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(pizzas)
+      const jsonData = await response.json()
+
+      setData(jsonData)
+    } catch (err){
+      console.log(err)
+    }
+    }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
   return (
     <div className='w-full'>
       <Header  />
@@ -11,7 +30,8 @@ function Home() {
       <section className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-18 md:px-12
       py-12'>
 
-        {pizzas.map((pizza) => 
+
+        {data.map((pizza) => 
           <Card 
           key={pizza.id}
           title={pizza.name}

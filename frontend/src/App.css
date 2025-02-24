@@ -61,16 +61,6 @@ button:focus {
 h3 {
   text-transform: uppercase;
 }
-.ingredient-item:not(:last-child)::after {
-  content: ",";
-}
-.ingredient-item::before {
-  content: " ";
-  margin-right: 0.25rem;
-}
-.ingredient-item:last-child::after {
-  content: ".";
-}
 .btn-decrease {
   width: 30px;
   height: 30px;
